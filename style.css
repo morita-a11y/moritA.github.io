@@ -1,6 +1,6 @@
 /* =========================================================
    MoritA Personal Hub - Global Stylesheet
-   - ダークモード基調
+   - ライトモード基調
    - カード型UI
    - レスポンシブ対応
    ========================================================= */
@@ -8,17 +8,17 @@
 /* ---------- CSS カスタムプロパティ ---------- */
 :root {
   /* 背景色 */
-  --bg-primary:    #0b0d13;
-  --bg-secondary:  #111318;
-  --bg-card:       #161922;
-  --bg-card-hover: #1c2030;
-  --bg-input:      #1a1d28;
-  --bg-navbar:     rgba(11, 13, 19, 0.85);
+  --bg-primary:    #f8fafc;
+  --bg-secondary:  #f1f5f9;
+  --bg-card:       #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-input:      #f1f5f9;
+  --bg-navbar:     rgba(255, 255, 255, 0.85);
 
   /* テキスト色 */
-  --text-primary:   #e2e8f0;
-  --text-secondary: #8b94a6;
-  --text-muted:     #555d6e;
+  --text-primary:   #1e293b;
+  --text-secondary: #64748b;
+  --text-muted:     #94a3b8;
 
   /* アクセント */
   --accent-blue:    #3b82f6;
@@ -32,14 +32,14 @@
   --gradient-cool:  linear-gradient(135deg, #06b6d4, #3b82f6);
 
   /* ボーダー */
-  --border-color:   #1e2231;
-  --border-subtle:  #2a2f3e;
+  --border-color:   #e2e8f0;
+  --border-subtle:  #cbd5e1;
 
   /* シャドウ */
-  --shadow-sm:  0 2px  8px  rgba(0,0,0,0.2);
-  --shadow-md:  0 4px  16px rgba(0,0,0,0.3);
-  --shadow-lg:  0 8px  32px rgba(0,0,0,0.4);
-  --shadow-glow: 0 0 20px rgba(59,130,246,0.15);
+  --shadow-sm:  0 1px  3px  rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px  6px  rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:  0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+  --shadow-glow: 0 0 20px rgba(59,130,246,0.1);
 
   /* ボーダー半径 */
   --radius-sm:  8px;
@@ -180,7 +180,7 @@ img { max-width: 100%; display: block; }
 .nav-link:hover,
 .nav-link.active {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.04);
 }
 .nav-link.active {
   color: var(--accent-blue);
@@ -203,7 +203,7 @@ img { max-width: 100%; display: block; }
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--text-primary);
+  background: var(--text-secondary);
   border-radius: 2px;
   transition: all 0.3s;
 }
@@ -236,7 +236,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(139,92,246,0.06) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, rgba(139,92,246,0.04) 40%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -250,8 +250,8 @@ img { max-width: 100%; display: block; }
 .hero-tag {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.2);
+  background: rgba(59,130,246,0.06);
+  border: 1px solid rgba(59,130,246,0.15);
   border-radius: 999px;
   color: var(--accent-blue);
   font-size: 0.85rem;
@@ -329,7 +329,7 @@ img { max-width: 100%; display: block; }
 }
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(59,130,246,0.3);
+  border-color: rgba(59,130,246,0.2);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
   color: var(--text-primary);
 }
@@ -338,10 +338,8 @@ img { max-width: 100%; display: block; }
 }
 
 /* カード個別アクセント色 */
-.card--lol::before       { background: var(--gradient-warm); }
-.card--lol:hover         { border-color: rgba(245,158,11,0.3); box-shadow: var(--shadow-lg), 0 0 20px rgba(245,158,11,0.1); }
 .card--knowledge::before { background: var(--gradient-cool); }
-.card--knowledge:hover   { border-color: rgba(6,182,212,0.3); box-shadow: var(--shadow-lg), 0 0 20px rgba(6,182,212,0.1); }
+.card--knowledge:hover   { border-color: rgba(6,182,212,0.2); box-shadow: var(--shadow-lg), 0 0 20px rgba(6,182,212,0.06); }
 .card--learning::before  { background: var(--gradient-main); }
 
 .card-icon-wrap {
@@ -351,13 +349,12 @@ img { max-width: 100%; display: block; }
   width: 56px;
   height: 56px;
   border-radius: var(--radius-md);
-  background: rgba(59,130,246,0.08);
+  background: rgba(59,130,246,0.06);
   margin-bottom: 20px;
   color: var(--accent-blue);
 }
-.card--lol .card-icon-wrap       { background: rgba(245,158,11,0.08); color: var(--accent-orange); }
-.card--knowledge .card-icon-wrap { background: rgba(6,182,212,0.08);  color: var(--accent-cyan); }
-.card--learning .card-icon-wrap  { background: rgba(139,92,246,0.08); color: var(--accent-purple); }
+.card--knowledge .card-icon-wrap { background: rgba(6,182,212,0.06);  color: var(--accent-cyan); }
+.card--learning .card-icon-wrap  { background: rgba(139,92,246,0.06); color: var(--accent-purple); }
 
 .card-title {
   font-size: 1.3rem;
@@ -379,7 +376,6 @@ img { max-width: 100%; display: block; }
   color: var(--accent-blue);
   transition: gap 0.2s;
 }
-.card--lol .card-link       { color: var(--accent-orange); }
 .card--knowledge .card-link { color: var(--accent-cyan); }
 .card--learning .card-link  { color: var(--accent-purple); }
 
@@ -450,12 +446,12 @@ textarea::placeholder {
   box-shadow: 0 4px 16px rgba(59,130,246,0.3);
 }
 .btn-secondary {
-  background: rgba(255,255,255,0.06);
+  background: var(--bg-secondary);
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
 }
 .btn-secondary:hover {
-  background: rgba(255,255,255,0.1);
+  background: var(--border-color);
 }
 .btn-danger {
   background: linear-gradient(135deg, var(--accent-red), #dc2626);
@@ -513,7 +509,7 @@ th {
   letter-spacing: 0.5px;
 }
 tr:last-child td { border-bottom: none; }
-tr:hover td { background: rgba(255,255,255,0.02); }
+tr:hover td { background: rgba(0,0,0,0.02); }
 
 /* ---------- タブ ---------- */
 .tabs {
@@ -601,8 +597,8 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 
 /* コードブロック */
 .code-block {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  background: #1e293b;
+  border: 1px solid #334155;
   border-radius: var(--radius-sm);
   padding: 20px 24px;
   margin: 16px 0 24px;
@@ -610,15 +606,15 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   font-size: 0.85rem;
   line-height: 1.6;
   overflow-x: auto;
-  color: var(--accent-cyan);
+  color: #67e8f9;
 }
 code {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  background: rgba(59,130,246,0.08);
+  background: rgba(59,130,246,0.06);
   padding: 2px 6px;
   border-radius: 4px;
-  color: var(--accent-blue);
+  color: #2563eb;
 }
 
 /* 目次 (ToC) */
@@ -769,21 +765,21 @@ code {
 .note-tag {
   display: inline-block;
   padding: 3px 10px;
-  background: rgba(59,130,246,0.1);
+  background: rgba(59,130,246,0.08);
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--accent-blue);
+  color: #2563eb;
   margin-right: 6px;
   margin-bottom: 8px;
 }
 .note-tag.purple {
-  background: rgba(139,92,246,0.1);
-  color: var(--accent-purple);
+  background: rgba(139,92,246,0.08);
+  color: #7c3aed;
 }
 .note-tag.green {
-  background: rgba(34,197,94,0.1);
-  color: var(--accent-green);
+  background: rgba(34,197,94,0.08);
+  color: #16a34a;
 }
 
 /* ---------- ページヘッダー ---------- */
@@ -891,8 +887,9 @@ code {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: var(--bg-primary);
+    background: var(--bg-card);
     border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
     padding: 16px;
     gap: 4px;
     transform: translateY(-110%);
