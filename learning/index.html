@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning - MoritA</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== ナビゲーション ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../" class="nav-logo"><span class="logo-accent">M</span>oritA</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Home
+        </a></li>
+        <li><a href="../lol-tools/" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          LoL Tools
+        </a></li>
+        <li><a href="../knowledge/" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Knowledge
+        </a></li>
+        <li><a href="../learning/" class="nav-link active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Learning
+        </a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== 認証画面 ========== -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px;">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <h2>Learning Notes</h2>
+      <p>このページは認証が必要です。<br>ユーザー名とパスワードを入力してください。</p>
+
+      <form id="authForm" onsubmit="return handleLogin(event)">
+        <div class="form-group">
+          <label for="authUser">ユーザー名</label>
+          <input type="text" id="authUser" placeholder="ユーザー名を入力" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label for="authPass">パスワード</label>
+          <input type="password" id="authPass" placeholder="パスワードを入力" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">
+          🔓 ログイン
+        </button>
+      </form>
+      <p class="auth-error" id="authError">ユーザー名またはパスワードが正しくありません。</p>
+    </div>
+  </div>
+
+  <!-- ========== 認証後コンテンツ ========== -->
+  <div class="learning-content" id="learningContent">
+    <div class="container">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:16px;">
+        <div>
+          <h1 style="font-size:2rem;font-weight:800;margin-bottom:4px;">
+            <span class="gradient-text">Learning Notes</span>
+          </h1>
+          <p style="color:var(--text-secondary);">学習メモ・コードスニペット・研究ノート</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="handleLogout()">
+          🚪 ログアウト
+        </button>
+      </div>
+
+      <!-- ========== 学習メモ ========== -->
+      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:16px;">📝 学習メモ</h2>
+
+      <div class="note-card">
+        <div>
+          <span class="note-tag">アルゴリズム</span>
+          <span class="note-tag purple">競プロ</span>
+        </div>
+        <h3>動的計画法 (DP) の基本パターン</h3>
+        <ul style="padding-left:20px;margin-top:8px;">
+          <li>ナップサック問題: dp[i][w] = i番目までの品物で重さwの最大価値</li>
+          <li>最長増加部分列 (LIS): dp[i] = a[i]を末尾とするLISの長さ</li>
+          <li>区間DP: dp[l][r] = 区間[l,r]の最適値</li>
+          <li>桁DP: 各桁ごとに状態遷移</li>
+        </ul>
+      </div>
+
+      <div class="note-card">
+        <div>
+          <span class="note-tag green">数学</span>
+        </div>
+        <h3>線形代数のポイント</h3>
+        <p style="margin-top:8px;">
+          固有値分解: Av = λv<br>
+          特異値分解 (SVD): A = UΣVᵀ<br>
+          主成分分析 (PCA) は共分散行列の固有値問題に帰着される。<br>
+          次元削減の際、寄与率が高い上位k個の固有ベクトルを選択。
+        </p>
+      </div>
+
+      <div class="note-card">
+        <div>
+          <span class="note-tag">ネットワーク</span>
+          <span class="note-tag purple">セキュリティ</span>
+        </div>
+        <h3>TCP/IPプロトコルスタック</h3>
+        <p style="margin-top:8px;">
+          アプリケーション層: HTTP, HTTPS, DNS, SMTP<br>
+          トランスポート層: TCP (信頼性), UDP (速度)<br>
+          インターネット層: IP, ICMP, ARP<br>
+          リンク層: Ethernet, Wi-Fi
+        </p>
+      </div>
+
+      <!-- ========== コードスニペット ========== -->
+      <h2 style="font-size:1.2rem;font-weight:700;margin:32px 0 16px;">💻 コードスニペット</h2>
+
+      <div class="note-card">
+        <div><span class="note-tag">Python</span></div>
+        <h3>Union-Find (素集合データ構造)</h3>
+        <div class="code-block" style="margin-top:12px;">
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        rx, ry = self.find(x), self.find(y)
+        if rx == ry:
+            return False
+        if self.rank[rx] < self.rank[ry]:
+            rx, ry = ry, rx
+        self.parent[ry] = rx
+        self.size[rx] += self.size[ry]
+        if self.rank[rx] == self.rank[ry]:
+            self.rank[rx] += 1
+        return True
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div><span class="note-tag green">JavaScript</span></div>
+        <h3>debounce 関数</h3>
+        <div class="code-block" style="margin-top:12px;">
+function debounce(fn, delay = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+// 使用例
+const search = debounce((query) => {
+  console.log('検索:', query);
+}, 500);
+        </div>
+      </div>
+
+      <!-- ========== 研究メモ ========== -->
+      <h2 style="font-size:1.2rem;font-weight:700;margin:32px 0 16px;">🔬 研究メモ</h2>
+
+      <div class="note-card">
+        <div>
+          <span class="note-tag purple">論文</span>
+          <span class="note-tag">NLP</span>
+        </div>
+        <h3>Attention Is All You Need (Transformer)</h3>
+        <p style="margin-top:8px;">
+          Self-Attention メカニズムにより、シーケンス内の任意の位置間の関係を直接計算。<br>
+          RNNの逐次処理を排除し並列計算を実現。<br><br>
+          <strong>Scaled Dot-Product Attention:</strong><br>
+          Attention(Q, K, V) = softmax(QKᵀ / √d_k) V<br><br>
+          <strong>Multi-Head Attention:</strong><br>
+          複数のAttentionヘッドを並行に計算し、異なる表現部分空間の情報を捉える。
+        </p>
+      </div>
+
+      <div class="note-card">
+        <div>
+          <span class="note-tag green">実験</span>
+        </div>
+        <h3>GPU計算の最適化メモ</h3>
+        <p style="margin-top:8px;">
+          ・CUDA: スレッド→ワープ(32)→ブロック→グリッド<br>
+          ・メモリ階層: レジスタ > 共有メモリ > L1/L2 > グローバルメモリ<br>
+          ・コアレスドアクセス: 連続したスレッドが連続したメモリにアクセス<br>
+          ・Mixed Precision Training: FP16での計算 + FP32でのマスタ重み保持
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <p>&copy; 2026 MoritA. Built with ❤️ on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
